@@ -1,0 +1,41 @@
+<head>
+    <title>small_snake</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<div class="w3-container w3-card">
+    <h1>Phone App</h1>
+</div>
+
+<canvas id="sc" width="400" height="25"></canvas>
+<br>
+<canvas id="pg" width="400" height="400"></canvas>
+<br>
+
+<table>
+    <tr>
+        <td width="132"></td>
+        <td width="132" align="center"><button class="bt" value="38" onclick="move(value)">Up</button></td>
+        <td width="132"></td>　
+    </tr>
+    <tr>
+        <td align="center"><button class="bt" value="37" onclick="move(value)">Left</button></td>
+        <td></td>
+        <td align="center"><button class="bt" value="39" onclick="move(value)">Right</button>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td align="center"><button class="bt" value="40" onclick="move(value)">Down</button></td>
+        <td></td>
+    </tr>
+</table>
+<img src='./apple.png' id="apple" hidden=false>
+<script src="./snake.js"></script>
