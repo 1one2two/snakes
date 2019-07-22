@@ -1,15 +1,37 @@
 var ru;
+let w = 20;
+var audio = new Audio('./small_drum1.mp3');
+
 window.onload = function () {
+    if ('caches' in window) {
+        console.log("Y");
+    }
+
     pg_ = document.getElementById("sc");
     pan_ = pg_.getContext("2d");
     pg = document.getElementById("pg");
     pan = pg.getContext("2d");
     document.addEventListener("keydown", env => move(String(env.keyCode)));
-    ru = setInterval(game, 1000 / 4);
+    ru = setInterval(game, 1000 / 8);
     ressets();
 }
+caches.open('test-cache').then(function (cache) {
+    // 緩存創建完成，現在就可以訪問了
+});
 
-w = 20;
+caches.open('test-cache').then(function (cache) {
+    cache.addAll(['/', '/images/apple.png'])
+        .then(function () {
+            // Cached!
+        });
+});//*/
+
+caches.open('test-cache').then(function (cache) {
+    cache.keys().then(function (cachedRequests) {
+        console.log(cachedRequests); // [Request, Request]
+    });
+});
+
 function ressets() {
     snake_x = snake_y = 10;
     move_x = 0;
@@ -19,6 +41,7 @@ function ressets() {
     snake_length = 5;
     point = 0;
     over = false;
+    start = true;
 }
 
 function game() {
@@ -83,6 +106,13 @@ function game() {
     //pan.stroke();
 }
 
+function showCoords(event) {
+    var x = event.clientX;
+    var y = event.clientY;
+    var coords = "X coords: " + x + ", Y coords: " + y;
+    document.getElementById("demo").innerHTML = coords;
+}
+
 function move(val) {
     switch (String(val)) {
         case "37":
@@ -105,7 +135,16 @@ function move(val) {
                 move_x = 0; move_y = 1;
             }
             break;
+        case "32":
+            if (start)
+                clearInterval(ru);
+            else
+                ru = setInterval(game, 1000 / 8);
+            start = !start;
+            break;
     }
+    audio = new Audio('./small_drum1.mp3');
+    audio.play();
 }
 
 function keypush(env) {
