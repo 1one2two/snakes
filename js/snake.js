@@ -1,14 +1,11 @@
 var ru;
 let w = 20;
-var audio = new Audio('./sound/small_drum1.mp3');
-var bac_audio = new Audio('./sound/7895.mp3');
+var audio;
 
 window.onload = function () {
     if ('caches' in window) {
         console.log("Y");
     }
-
-
 
     caches.open('test-cache').then(function (cache) {
         console.log('T');
@@ -47,15 +44,13 @@ caches.open('test-cache').then(function (cache) {
 //*/
 function ressets() {
     snake_x = snake_y = 10;
-    move_x = 0;
-    move_y = 0;
+    move_x = move_y = 0;
     food_x = food_y = 15;
     snake = [];
     snake_length = 5;
     point = 0;
     over = false;
     start = true;
-
     drawscore();
 }
 
@@ -109,11 +104,6 @@ function game() {
 
     var img = document.getElementById("apple");
     pan.drawImage(img, food_x * w, food_y * w, w - 2, w - 2);
-    //pan.fillStyle = "red";
-    //pan.arc(food_x * w + 10, food_y * w + 10, 10, 0, 2 * Math.PI);
-    //pan.fill();
-
-    //pan.stroke();
 }
 
 function drawscore() {
@@ -129,7 +119,7 @@ function showCoords(event) {
     var x = event.clientX;
     var y = event.clientY;
     var coords = "X coords: " + x + ", Y coords: " + y;
-    document.getElementById("demo").innerHTML = coords;
+    $("#demo").innerHTML = coords;
 }
 
 function move(val) {

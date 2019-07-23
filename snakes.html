@@ -1,40 +1,38 @@
 <head>
+    <meta charset="utf-8" />
     <title>small_snake</title>
     <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <meta charset="utf-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script src="./js/snake.js"></script>
+    <script src="jquery-3.4.1.min.js"></script>
 </head>
 
-<canvas id="sc" width="400" height="25"></canvas>
-<br>
-<canvas id="pg" width="400" height="400"></canvas>
-<audio id="myAudio" controls autoplay loop hidden="true">
-    <source src="./sound/7895.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
+<body>
+    <canvas id="sc" width="400" height="25"></canvas>
+    <br>
+    <canvas id="pg" width="400" height="400"></canvas>
+    <audio id="myAudio" controls autoplay loop hidden="true">
+        <source src="./sound/7895.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-<table>
-    <tr>
-        <td width="132"></td>
-        <td width="132" align="center"><button class="bt" value="38" onclick="move(value)">Up</button></td>
-        <td width="132"></td>　
-    </tr>
-    <tr>
-        <td align="center"><button class="bt" value="37" onclick="move(value)">Left</button></td>
-        <td></td>
-        <td align="center"><button class="bt" value="39" onclick="move(value)">Right</button>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td align="center"><button class="bt" value="40" onclick="move(value)">Down</button></td>
-        <td></td>
-    </tr>
-</table>
-<img src='./image/apple.png' id="apple" hidden=false>
-<script src="./js/snake.js"></script>
+    <table>
+        <tr>
+            <td width="132"></td>
+            <td width="132" align="center"><button class="bt" value="38" onclick="move(value)">Up</button></td>
+            <td width="132"></td>　
+        </tr>
+        <tr>
+            <td align="center"><button class="bt" value="37" onclick="move(value)">Left</button></td>
+            <td></td>
+            <td align="center"><button class="bt" value="39" onclick="move(value)">Right</button>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="center"><button class="bt" value="40" onclick="move(value)">Down</button></td>
+            <td></td>
+        </tr>
+    </table>
+    <img src='./image/apple.png' id="apple" hidden=false>
+</body>
