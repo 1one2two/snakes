@@ -2,19 +2,42 @@ var ru;
 let w = 20;
 var audio;
 
-window.onload = function () {
-    if ('caches' in window) {
-        console.log("Y");
+let cnv;
+let d = 30;
+let g;
+
+function setup() {
+    cnv = createCanvas(100, 100);
+    cnv.mouseMoved(changeSize); // attach listener for
+    // activity on canvas only
+    d = 10;
+    g = 100;
+}
+
+function draw() {
+    background(g);
+    fill(200);
+    ellipse(width / 2, height / 2, d, d);
+}
+
+// this function fires when mouse moves anywhere on
+// page
+function mouseMoved() {
+    g = g + 5;
+    if (g > 255) {
+        g = 0;
     }
+}
 
-    caches.open('test-cache').then(function (cache) {
-        console.log('T');
-        cache.add('1231').then(function () {
-            // request has been added to the cache
-            console.log('F');
-        });
-    });
+// this function fires when mouse moves over canvas
+function changeSize() {
+    d = d + 2;
+    if (d > 100) {
+        d = 0;
+    }
+}
 
+window.onload = function () {
     pg_ = document.getElementById("sc");
     pan_ = pg_.getContext("2d");
     pg = document.getElementById("pg");
@@ -23,25 +46,7 @@ window.onload = function () {
     ru = setInterval(game, 1000 / 8);
     ressets();
 }
-/*
-caches.open('test-cache').then(function (cache) {
-    // 緩存創建完成，現在就可以訪問了
-    cache.add('123');
-});
 
-caches.open('test-cache').then(function (cache) {
-    cache.addAll(['/', './image/apple.png'])
-        .then(function () {
-            // Cached!
-        });
-});
-
-caches.open('test-cache').then(function (cache) {
-    cache.keys().then(function (cachedRequests) {
-        console.log(cachedRequests); // [Request, Request]
-    });
-});
-//*/
 function ressets() {
     snake_x = snake_y = 10;
     move_x = move_y = 0;
@@ -97,7 +102,7 @@ function game() {
     snake.map((value, index) => { if (index < snake.length - 1) pan.fillRect(value.x * w + 1, value.y * w + 1, w - 1, w - 1); })
 
     pan.fillStyle = "#6292E7";//head blue
-    pan.fillRect(snake[snake.length - 1].x * w, snake[snake.length - 1].y * w, w - 1, w - 1)
+    pan.fillRect(snake[snake.length - 1].x * w + 1, snake[snake.length - 1].y * w + 1, w - 1, w - 1)
 
     pan.fillStyle = "red";
     pan.fillRect(food_x * w, food_y * w, w - 1, w - 1);
