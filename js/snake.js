@@ -1,11 +1,22 @@
 var ru;
 let w = 20;
-var audio = new Audio('./small_drum1.mp3');
+var audio = new Audio('./sound/small_drum1.mp3');
+var bac_audio = new Audio('./sound/7895.mp3');
 
 window.onload = function () {
     if ('caches' in window) {
         console.log("Y");
     }
+
+
+
+    caches.open('test-cache').then(function (cache) {
+        console.log('T');
+        cache.add('1231').then(function () {
+            // request has been added to the cache
+            console.log('F');
+        });
+    });
 
     pg_ = document.getElementById("sc");
     pan_ = pg_.getContext("2d");
@@ -15,23 +26,25 @@ window.onload = function () {
     ru = setInterval(game, 1000 / 8);
     ressets();
 }
+/*
 caches.open('test-cache').then(function (cache) {
     // 緩存創建完成，現在就可以訪問了
+    cache.add('123');
 });
 
 caches.open('test-cache').then(function (cache) {
-    cache.addAll(['/', '/images/apple.png'])
+    cache.addAll(['/', './image/apple.png'])
         .then(function () {
             // Cached!
         });
-});//*/
+});
 
 caches.open('test-cache').then(function (cache) {
     cache.keys().then(function (cachedRequests) {
         console.log(cachedRequests); // [Request, Request]
     });
 });
-
+//*/
 function ressets() {
     snake_x = snake_y = 10;
     move_x = 0;
@@ -42,6 +55,8 @@ function ressets() {
     point = 0;
     over = false;
     start = true;
+
+    drawscore();
 }
 
 function game() {
@@ -73,12 +88,7 @@ function game() {
         food_x = Math.floor(Math.random() * w);
         food_y = Math.floor(Math.random() * w);
 
-        pan_.fillStyle = "#FFFFFF";
-        pan_.fillRect(0, 0, pg_.width, pg_.height);
-
-        pan_.fillStyle = "#000000";
-        pan_.font = "20px Arial";
-        pan_.fillText("Score:" + String(point), 10, 20);
+        drawscore();
     }
 
     snake.push({ x: snake_x, y: snake_y });
@@ -104,6 +114,15 @@ function game() {
     //pan.fill();
 
     //pan.stroke();
+}
+
+function drawscore() {
+    pan_.fillStyle = "#FFFFFF";
+    pan_.fillRect(0, 0, pg_.width, pg_.height);
+
+    pan_.fillStyle = "#000000";
+    pan_.font = "20px Arial";
+    pan_.fillText("Score:" + String(point), 10, 20);
 }
 
 function showCoords(event) {
@@ -143,10 +162,6 @@ function move(val) {
             start = !start;
             break;
     }
-    audio = new Audio('./small_drum1.mp3');
+    audio = new Audio('./sound/small_drum1.mp3');
     audio.play();
-}
-
-function keypush(env) {
-    move(String(env.keyCode));
 }

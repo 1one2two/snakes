@@ -1,6 +1,6 @@
 <head>
     <title>small_snake</title>
-    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
     <meta charset="utf-8" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,10 @@
 <canvas id="sc" width="400" height="25"></canvas>
 <br>
 <canvas id="pg" width="400" height="400"></canvas>
-<br>
+<audio id="myAudio" controls autoplay loop hidden="true">
+    <source src="./sound/7895.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
 <table>
     <tr>
@@ -33,5 +36,5 @@
         <td></td>
     </tr>
 </table>
-<img src='./apple.png' id="apple" hidden=false>
-<script src="./snake.js"></script>
+<img src='./image/apple.png' id="apple" hidden=false>
+<script src="./js/snake.js"></script>
