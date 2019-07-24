@@ -2,7 +2,11 @@
     <meta charset="utf-8" />
     <title>small_snake</title>
     <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <script src="./node_modules/nipplejs/dist/nipplejs.min.js"></script>
+    <script src="./js/joystick.js"></script>
     <script src="./js/snake.js"></script>
     <script src="./js/jquery-3.4.1.min.js"></script>
 
@@ -38,5 +42,17 @@
             <td></td>
         </tr>
     </table>
+    <div class="box">
+        <div id="left">
+          <div class="nipple_l">
+            <div class="front_l"></div>
+            <div class="back_l"></div>
+          </div>
+        </div>
+        <div id="right">
+          <span class="dot"></span>
+          <div class="ground"></div>
+        </div>
+      </div>
     <img src='./image/apple.png' id="apple" hidden=false>
 </body>

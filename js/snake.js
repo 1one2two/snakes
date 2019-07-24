@@ -1,10 +1,35 @@
 var ru;
 let w = 20;
 var audio;
+var scores = 0;
 
 let cnv;
 let d = 30;
 let g;
+
+function select(val) {
+    return document.querySelector(val);
+}
+
+new Joystick({
+    zone: select('#left')
+})
+    .init()
+    .onStart = function (distance, angle) {
+        console.log('Left:无人机向 => ' + angle + '移动' + distance + '个单位');
+        switch (angle) {
+            case 'up':
+                Game.jump(distance);
+                break;
+            case 'right':
+                Game.forward(distance);
+                break;
+            case 'left':
+                Game.backward(distance);
+            case 'down':
+                console.log('Down');
+        }
+    }
 
 function setup() {
     cnv = createCanvas(100, 100);
@@ -20,8 +45,6 @@ function draw() {
     ellipse(width / 2, height / 2, d, d);
 }
 
-// this function fires when mouse moves anywhere on
-// page
 function mouseMoved() {
     g = g + 5;
     if (g > 255) {
@@ -29,7 +52,6 @@ function mouseMoved() {
     }
 }
 
-// this function fires when mouse moves over canvas
 function changeSize() {
     d = d + 2;
     if (d > 100) {
@@ -53,7 +75,7 @@ function ressets() {
     food_x = food_y = 15;
     snake = [];
     snake_length = 5;
-    point = 0;
+    scores = 0;
     over = false;
     start = true;
     drawscore();
@@ -84,7 +106,7 @@ function game() {
 
     if (snake_x == food_x && snake_y == food_y) {
         snake_length += 1;
-        point += 1;
+        scores += 1;
         food_x = Math.floor(Math.random() * w);
         food_y = Math.floor(Math.random() * w);
 
@@ -117,7 +139,7 @@ function drawscore() {
 
     pan_.fillStyle = "#000000";
     pan_.font = "20px Arial";
-    pan_.fillText("Score:" + String(point), 10, 20);
+    pan_.fillText("Score:" + String(scores), 10, 20);
 }
 
 function showCoords(event) {
